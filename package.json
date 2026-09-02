@@ -1,0 +1,28 @@
+{
+  "name": "@payre/mcp",
+  "version": "1.0.0",
+  "description": "Official Model Context Protocol (MCP) Server for Payre Crypto Payment Gateway by PAYRE INFRA LTD",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "payre-mcp": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "payre",
+    "mcp",
+    "model-context-protocol",
+    "crypto",
+    "payment-gateway",
+    "web3"
+  ],
+  "author": "PAYRE INFRA LTD (payre.io)",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "dotenv": "^16.6.1"
+  }
+}

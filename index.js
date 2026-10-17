@@ -163,10 +163,10 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: 'object',
           properties: {
             amount_usd: { type: 'number', description: 'Invoiced USD amount (e.g. 29.99)' },
-            currency: { type: 'string', description: 'Token symbol to pay in (default: USDT)', enum: ['USDT', 'USDC'] },
+            currency: { type: 'string', description: 'Stablecoin symbol to pay in (default: USDC)', enum: ['USDC', 'USDT'] },
             description: { type: 'string', description: 'Brief description of the order/payment context' },
             expires_in_minutes: { type: 'number', description: 'Invoice expiry in minutes (default: 120)' },
-            preferred_chain: { type: 'string', description: 'Suggested chain key (e.g. base, polygon, bsc, arbitrum, solana, mainnet) [Optional]' },
+            preferred_chain: { type: 'string', description: 'Base chain key (base or base-sepolia) [Optional]', enum: ['base', 'base-sepolia'] },
             business_id: { type: 'string', description: 'Specific business context UUID. Fallbacks to active business [Optional]' },
             redirect_url: { type: 'string', description: 'URL to redirect customer after successful payment [Optional]' },
             cancel_url: { type: 'string', description: 'URL to redirect customer if cancelled [Optional]' }
@@ -193,17 +193,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: 'object',
           properties: {
             invoice_id: { type: 'string', description: 'The UUID of the invoice' }
-          },
-          required: ['invoice_id']
-        }
-      },
-      {
-        name: 'delete_invoice',
-        description: 'Cancel or delete an invoice by UUID.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            invoice_id: { type: 'string', description: 'The UUID of the invoice to delete' }
           },
           required: ['invoice_id']
         }
@@ -337,13 +326,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case 'get_invoice_details': {
         const data = await apiRequest(`/invoices/${args.invoice_id}`);
-        return { content: [{ type: 'text', text: JSON.stringify(data, null, 2) }] };
-      }
-
-      case 'delete_invoice': {
-        const data = await apiRequest(`/invoices/${args.invoice_id}`, {
-          method: 'DELETE'
-        });
         return { content: [{ type: 'text', text: JSON.stringify(data, null, 2) }] };
       }
 

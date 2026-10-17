@@ -3,11 +3,11 @@
 The official **Model Context Protocol (MCP)** server for the **Payre Web3 Payment Gateway** by **PAYRE INFRA LTD** ([payre.io](https://payre.io)).
 
 This MCP server allows AI assistants (Claude Desktop, Cursor, Antigravity, Zed, OpenCode, etc.) to securely interact with the Payre direct-to-wallet payment infrastructure to:
-- Generate instant non-custodial crypto checkout invoices
-- Monitor direct-to-wallet settlements and transaction confirmations
-- Manage business contexts and EVM/Solana payout destinations
+- Generate instant non-custodial stablecoin checkout invoices on Base (USDC, USDT)
+- Monitor direct-to-wallet settlements and transaction confirmations on Base
+- Manage business contexts and Base payout destinations
 - Inspect merchant analytics, volume statistics, and compliance tier limits
-- Query supported blockchains and token contracts (Base, Polygon, BSC, Solana, Arbitrum, Mainnet)
+- Query supported Base network configurations and stablecoin contracts (USDC, USDT)
 - Inspect webhook delivery logs and signing secrets
 
 ---
@@ -107,7 +107,6 @@ PAYRE_BASE_URL=https://payre.onrender.com
 | **`create_invoice`** | Generate a direct-to-wallet crypto checkout invoice and buyer checkout link. |
 | **`list_invoices`** | List invoices with status, amounts, and pagination. |
 | **`get_invoice_details`** | Deep inspection of an invoice, including active deposit sessions and on-chain tx receipts. |
-| **`delete_invoice`** | Cancel or delete an invoice. |
 | **`list_transactions`** | Retrieve settlement transaction records and on-chain receipts. |
 | **`get_merchant_stats`** | Retrieve merchant volume analytics, earnings, and rolling tier limit usage. |
 | **`list_chains`** | Retrieve active EVM and Solana blockchains and supported token contracts. |
